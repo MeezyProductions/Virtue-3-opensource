@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="source"/>
+	<classpathentry kind="lib" path="library/binrary/netty-all-4.1.0.Beta3.jar"/>
+	<classpathentry kind="lib" path="library/binrary/slf4j-api-1.7.7.jar"/>
+	<classpathentry kind="lib" path="library/binrary/slf4j-jdk14-1.7.7.jar"/>
+	<classpathentry kind="lib" path="library/source/netty-all-4.1.0.Beta3-sources.jar"/>
+	<classpathentry kind="lib" path="library/source/slf4j-api-1.7.7-sources.jar"/>
+	<classpathentry kind="lib" path="library/source/slf4j-jdk14-1.7.7-sources.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="binary"/>
+</classpath>
