@@ -104,8 +104,10 @@ public class Launcher {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			logger.info("Launcher Loaded in " + TimeUnit.MILLISECONDS.toSeconds((System.currentTimeMillis() - start)) + " seconds.");
-			logger.info("Launcher is currently running on " + System.getProperty("os.name") + " on a(n) " + System.getProperty("os.arch") + " architecture.");
+			logger.info("Virtue 3 Loaded in " + TimeUnit.MILLISECONDS.toSeconds((System.currentTimeMillis() - start))
+					+ " seconds.");
+			logger.info("Virtue 3 is currently running on " + System.getProperty("os.name") + " on a(n) "
+					+ System.getProperty("os.arch") + " architecture.");
 		}
 	}
 	
