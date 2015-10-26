@@ -32,7 +32,7 @@ public class Constants {
 	/**
 	 * The Framework Name
 	 */
-	public static String FRAME_NAME = new String("Virue");
+	public static String FRAME_NAME = new String("Virtue");
 
 	/**
 	 * The Framework Version
