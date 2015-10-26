@@ -3,6 +3,8 @@ package org.virtue.network.protocol.handshake;
 import java.util.List;
 
 import org.virtue.Constants;
+import org.virtue.network.protocol.login.LoginDecoder;
+import org.virtue.network.protocol.login.LoginEncoder;
 import org.virtue.network.protocol.message.HandshakeMessage;
 import org.virtue.network.protocol.ondemand.OnDemandDecoder;
 import org.virtue.network.protocol.ondemand.OnDemandEncoder;
@@ -33,6 +35,8 @@ public class HandshakeDecoder extends ByteToMessageDecoder {
 			switch (type.getType()) {
 			case HANDSHAKE_LOGIN:
 				ensureResponse(ctx);
+				ctx.pipeline().replace("decoder", "decoder", new LoginDecoder());
+				ctx.pipeline().addAfter("decoder", "encoder", new LoginEncoder());
 				break;
 			case HANDSHAKE_ONDEMAND:
 				ensureResponse(ctx, buf);
