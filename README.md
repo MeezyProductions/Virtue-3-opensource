@@ -20,7 +20,12 @@
  * SOFTWARE.
  */
 
+Thrid-Party Libs
+Netty4
 
-Authors
+Cache: https://mega.nz/#!Og80VYKa!FcAloxwRsCMybJrOHr5kojcnwx5ZTeq_FlVwXCo9qCw
+
+Contributors
+--------------
 Kyle Fitz
 James Moore
