@@ -8,7 +8,6 @@ import org.virtue.Constants;
 import org.virtue.network.protocol.message.LoginRequest;
 import org.virtue.utility.Base37Utility;
 import org.virtue.utility.BufferUtility;
-import org.virtue.utility.ISAACCipher;
 import org.virtue.utility.XTEACipher;
 
 import io.netty.buffer.ByteBuf;
@@ -270,10 +269,7 @@ public class LoginDecoder extends ByteToMessageDecoder {
 		for (int i = 0; i < serverKeys.length; i++) {
 			serverKeys[i] = xteaKey[i] + 50;
 		}
-
-		out.add(new LoginRequestMessage(ctx.channel(), UsernameUtility
-				.formatForProtocol(username), password, username.contains("@"),
-				new ISAACCipher(serverKeys), new ISAACCipher(xteaKey), type));
+		out.add(new LoginRequest(username, password, type));
 	}
 
 	

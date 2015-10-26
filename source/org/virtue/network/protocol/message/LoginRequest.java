@@ -1,14 +1,13 @@
 package org.virtue.network.protocol.message;
 
+import org.virtue.network.protocol.login.LoginDecoder.LoginTypes;
+
 /**
  * @author Chryonic <http://rune-server.org/members/chryonic> Made on Oct 26,
  *         2015 for Virtue 3 opensource
  */
 public class LoginRequest {
 
-	public static enum LoginTypes {
-		LOBBY, WORLD;
-	}
 
 	private LoginTypes type;
 	protected String username;
