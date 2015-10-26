@@ -1,11 +1,11 @@
 package org.virtue.network.protocol.ondemand;
 
+import org.virtue.network.protocol.message.OnDemandResponseMessage;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
-
-import org.virtue.network.protocol.message.OnDemandResponseMessage;
 
 /**
  * @author Im Frizzy <skype:kfriz1998>

@@ -21,11 +21,6 @@
  */
 package org.virtue.model.entity.player;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-
 import org.virtue.Launcher;
 import org.virtue.model.entity.Entity;
 import org.virtue.network.event.buffer.OutboundBuffer;
@@ -33,6 +28,11 @@ import org.virtue.network.event.context.GameEventContext;
 import org.virtue.network.event.encoder.GameEventEncoder;
 import org.virtue.network.protocol.message.LoginTypeMessage;
 import org.virtue.utility.ISAACCipher;
+
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
 
 /**
  * @author Im Frizzy <skype:kfriz1998>

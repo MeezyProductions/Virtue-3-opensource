@@ -21,12 +21,12 @@
  */
 package org.virtue.network;
 
+import org.virtue.network.protocol.handshake.HandshakeDecoder;
+
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.timeout.ReadTimeoutHandler;
-
-import org.virtue.network.protocol.handshake.HandshakeDecoder;
 
 /**
  * @author Im Frizzy <skype:kfriz1998>
