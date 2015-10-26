@@ -6,8 +6,12 @@ import java.util.Deque;
 
 import org.virtue.Launcher;
 import org.virtue.engine.service.LoginService;
+import org.virtue.model.Lobby;
+import org.virtue.model.World;
 import org.virtue.model.entity.player.Player;
 import org.virtue.network.protocol.message.LoginRequest;
+import org.virtue.network.protocol.message.LoginResponse;
+import org.virtue.network.protocol.message.ResponseType;
 import org.virtue.network.session.Session;
 
 import io.netty.channel.Channel;
@@ -75,6 +79,20 @@ public class LoginSession extends Session {
 				idle = false;
 			}
 		}
+		
+		player = new Player(channel, request.getUsername(), request.getPassword(), null, null);
+		
+		switch (request.getType()) {
+		case LOGIN_LOBBY:
+			Lobby.getInstance().addPlayer(player);
+			break;
+		case LOGIN_WORLD:
+			Lobby.getInstance().removePlayer(player);
+			World.getInstance().addPlayer(player);
+			break;
+		}
+		
+		channel.writeAndFlush(new LoginResponse(request.getType(), ResponseType.STATUS_OK, player));
 
 	}
 

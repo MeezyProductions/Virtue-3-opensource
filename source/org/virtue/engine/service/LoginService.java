@@ -29,7 +29,7 @@ import org.virtue.network.session.impl.LoginSession;
 
 /**
  * 
- * @author Im Frizzy <skype:kfriz1998>
+ * @author Kyle Friz
  * @since Sep 4, 2014
  */
 public class LoginService implements Runnable {

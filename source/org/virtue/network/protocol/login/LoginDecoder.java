@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.virtue.Constants;
 import org.virtue.network.protocol.message.LoginRequest;
+import org.virtue.network.protocol.message.LoginTypeMessage;
 import org.virtue.utility.Base37Utility;
 import org.virtue.utility.BufferUtility;
 import org.virtue.utility.XTEACipher;
@@ -21,11 +22,7 @@ import io.netty.handler.codec.ByteToMessageDecoder;
  */
 public class LoginDecoder extends ByteToMessageDecoder {
 
-	public enum LoginTypes {
-		LOBBY, WORLD;
-	}
-
-	private LoginTypes type;
+	private LoginTypeMessage type;
 	private int size;
 
 	@Override
@@ -40,8 +37,8 @@ public class LoginDecoder extends ByteToMessageDecoder {
 			throw new ProtocolException("Invalid login type: " + loginType);
 		}
 		
-		type = loginType == 19 ? LoginTypes.LOBBY
-				: LoginTypes.WORLD;
+		type = loginType == 19 ? LoginTypeMessage.LOGIN_LOBBY
+				: LoginTypeMessage.LOGIN_WORLD;
 		size = buf.readShort() & 0xFFFF;
 		
 		if (buf.readableBytes() < size) {
@@ -59,9 +56,9 @@ public class LoginDecoder extends ByteToMessageDecoder {
 		}
 
 		 switch (type) {
-		 case LOBBY:
+		 case LOGIN_LOBBY:
 			  decodeLobbyPayload(ctx, buf, out);
-		 case WORLD:
+		 case LOGIN_WORLD:
 			 buf.readByte();
 			 decodeGamePayload(ctx, buf, out);
 		 }

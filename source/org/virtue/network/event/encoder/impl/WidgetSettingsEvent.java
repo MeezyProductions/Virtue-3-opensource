@@ -27,7 +27,7 @@ import org.virtue.network.event.context.impl.WidgetSettingsEventContext;
 import org.virtue.network.event.encoder.GameEventEncoder;
 
 /**
- * @author Im Frizzy <skype:kfriz1998>
+ * @author Kyle Friz
  * @since Sep 13, 2014
  */
 public class WidgetSettingsEvent implements GameEventEncoder<WidgetSettingsEventContext> {

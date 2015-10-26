@@ -4,7 +4,7 @@ import io.netty.buffer.ByteBuf;
 
 /**
  * 
- * @author Im Frizzy <skype:kfriz1998>
+ * @author Kyle Friz
  * @since Aug 8, 2014
  */
 public final class OnDemandResponseMessage {

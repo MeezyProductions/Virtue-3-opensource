@@ -35,7 +35,7 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 
 /**
- * @author Im Frizzy <skype:kfriz1998>
+ * @author Kyle Friz
  * @since Aug 9, 2014
  */
 public class Player extends Entity {

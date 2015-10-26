@@ -29,7 +29,7 @@ import java.util.List;
 
 
 /**
- * @author Im Frizzy <skype:kfriz1998>
+ * @author Kyle Friz
  * @since Aug 8, 2014
  */
 public class FileUtility {

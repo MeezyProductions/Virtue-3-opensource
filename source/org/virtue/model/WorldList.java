@@ -26,7 +26,7 @@ import java.util.List;
 
 
 /**
- * @author Im Frizzy <skype:kfriz1998>
+ * @author Kyle Friz
  * @since Sep 5, 2014
  */
 public class WorldList {

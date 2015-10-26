@@ -30,10 +30,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.virtue.network.protocol.message.HandshakeMessage;
 import org.virtue.network.session.Session;
+import org.virtue.network.session.impl.LoginSession;
 import org.virtue.network.session.impl.OnDemandSession;
 
 /**
- * @author Im Frizzy <skype:kfriz1998>
+ * @author Kyle Friz
  * @since Aug 9, 2014
  */
 public class NetworkHandler implements ChannelInboundHandler {
@@ -123,6 +124,9 @@ public class NetworkHandler implements ChannelInboundHandler {
 				switch(handshakeMessage.getType()) {
 				case HANDSHAKE_ONDEMAND:
 					ctx.channel().attr(attachment).set(new OnDemandSession(ctx.channel()));
+					break;
+				case HANDSHAKE_LOGIN:
+					ctx.channel().attr(attachment).set(new LoginSession(ctx.channel()));
 					break;
 				default: 
 					throw new IllegalStateException("Invalid handshake state requested.");

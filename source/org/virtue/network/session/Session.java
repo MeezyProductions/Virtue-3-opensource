@@ -27,7 +27,7 @@ import io.netty.channel.Channel;
 
 /**
  * 
- * @author Im Frizzy <skype:kfriz1998>
+ * @author Kyle Friz
  * @since Sep 4, 2014
  */
 public abstract class Session {

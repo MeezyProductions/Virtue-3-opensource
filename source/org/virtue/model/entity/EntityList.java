@@ -27,7 +27,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * @author Im Frizzy <skype:kfriz1998>
+ * @author Kyle Friz
  * @since Aug 8, 2014
  */
 public class EntityList<T extends Entity> extends AbstractCollection<T> {

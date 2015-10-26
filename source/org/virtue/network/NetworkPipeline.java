@@ -29,7 +29,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 
 /**
- * @author Im Frizzy <skype:kfriz1998>
+ * @author Kyle Friz
  * @since Aug 9, 2014
  */
 public class NetworkPipeline extends ChannelInitializer<SocketChannel> {

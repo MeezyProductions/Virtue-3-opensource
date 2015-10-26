@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Launcher Studios
+ * Copyright (c) 2015 Virtue 3
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,45 +21,47 @@
  */
 package org.virtue.network.protocol.message;
 
-import org.virtue.network.event.buffer.InboundBuffer;
+import org.virtue.model.entity.player.Player;
 
 /**
  * @author Kyle Friz
- * @since Sep 5, 2014
+ * Created on Oct 26, 2015
  */
-public class GameEventMessage {
+public class LoginResponse {
+	
+	private final LoginTypeMessage type;
+	private final ResponseType reponse;
+	private final Player player;
+
+	public LoginResponse(LoginTypeMessage type, ResponseType response) {
+		this(type, response, null);
+	}
+	
+	public LoginResponse(LoginTypeMessage type, ResponseType response, Player player) {
+		this.type = type;
+		this.reponse = response;
+		this.player = player;
+	}
+	
+	/**
+	 * @return the type
+	 */
+	public LoginTypeMessage getType() {
+		return type;
+	}
 
 	/**
-	 * The id of the game event
+	 * @return the type
 	 */
-	private int opcode;
-	
+	public ResponseType getResponse() {
+		return reponse;
+	}
+
 	/**
-	 * The payload of the game event
+	 * @return the player
 	 */
-	private InboundBuffer payload;
-	
-	/**
-	 * Creates a new GameEventMessage
-	 * @param opcode - the event opcode
-	 * @param payload - the event payload
-	 */
-	public GameEventMessage(int opcode, InboundBuffer payload) {
-		this.opcode = opcode;
-		this.payload = payload;
+	public Player getPlayer() {
+		return player;
 	}
 	
-	/**
-	 * Returns the opcode of the event
-	 */
-	public int getOpcode() {
-		return opcode;
-	}
-	
-	/**
-	 * Return the payload of the event
-	 */
-	public InboundBuffer getPayload() {
-		return payload;
-	}
 }

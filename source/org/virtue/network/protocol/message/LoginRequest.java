@@ -1,7 +1,5 @@
 package org.virtue.network.protocol.message;
 
-import org.virtue.network.protocol.login.LoginDecoder.LoginTypes;
-
 /**
  * @author Chryonic <http://rune-server.org/members/chryonic> Made on Oct 26,
  *         2015 for Virtue 3 opensource
@@ -9,11 +7,11 @@ import org.virtue.network.protocol.login.LoginDecoder.LoginTypes;
 public class LoginRequest {
 
 
-	private LoginTypes type;
+	private LoginTypeMessage type;
 	protected String username;
 	protected String password;
 
-	public LoginRequest(String username, String password, LoginTypes type) {
+	public LoginRequest(String username, String password, LoginTypeMessage type) {
 		this.username = username;
 		this.password = password;
 		this.type = type;
@@ -27,7 +25,7 @@ public class LoginRequest {
 		return password;
 	}
 
-	public LoginTypes getType() {
+	public LoginTypeMessage getType() {
 		return type;
 	}
 }

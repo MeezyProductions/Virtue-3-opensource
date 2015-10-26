@@ -57,6 +57,11 @@ public class OutboundBuffer extends Buffer {
 		putByte((int) (value >> 32));
 		putInt((int) (value & 0xffffffff));
 	}
+	
+	public void put6ByteInteger(long value) {
+		putShort((int) (value >> 32));
+		putInt((int) (value & 0xffffffff));
+	}
 
 	private void putByte(int value, int position) {
 		checkPosition(position);
