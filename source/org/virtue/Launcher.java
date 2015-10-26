@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Launcher Studios
+ * Copyright (c) 2015 Virtue 3
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,8 +40,6 @@ import org.virtue.openrs.FileStore;
 /**
  * @author Im Frizzy <skype:kfriz1998>
  * @since Aug 8, 2014
- * @author Belthazar 
- * Revision Update: 833
  */
 public class Launcher {
 
