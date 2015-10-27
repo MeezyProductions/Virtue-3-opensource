@@ -27,6 +27,7 @@ import java.util.Deque;
 import org.virtue.Virtue;
 import org.virtue.engine.service.LoginService;
 import org.virtue.engine.service.OnDemandService;
+import org.virtue.model.Lobby;
 import org.virtue.model.entity.player.Player;
 import org.virtue.network.protocol.login.LoginDecoder;
 import org.virtue.network.protocol.login.LoginEncoder;
@@ -108,26 +109,26 @@ public class LoginSession extends Session {
 				idle = false;
 			}
 		}
-		if (request != null) {
-			int response = checkPlayer(request);
-			if (player == null) {
-				channel.pipeline().remove(LoginDecoder.class);
-				channel.writeAndFlush(new LoginResponseMessage(null, response, null));
-				return;
-			}
+		/*
+		 * if (request != null) { int response = checkPlayer(request); if
+		 * (player == null) { channel.pipeline().remove(LoginDecoder.class);
+		 * channel.writeAndFlush(new LoginResponseMessage(null, response,
+		 * null)); return; }
+		 */
 
-			switch (request.getLoginType()) {
-			case LOGIN_LOBBY:
-				break;
-			case LOGIN_WORLD:
-				break;
-			}
-			channel.writeAndFlush(new LoginResponseMessage(player, response, request.getLoginType()));
-			channel.pipeline().remove(LoginDecoder.class);
-			channel.pipeline().remove(LoginEncoder.class);
-			System.out.println(
-					request.getUsername() + ", " + request.getPassword() + ", " + request.getLoginType().toString());
+		switch (request.getLoginType()) {
+		case LOGIN_LOBBY:
+			Lobby.getInstance().addPlayer(player);
+			break;
+		case LOGIN_WORLD:
+			break;
 		}
+		channel.writeAndFlush(new LoginResponseMessage(player, 2, request.getLoginType()));
+		channel.pipeline().remove(LoginDecoder.class);
+		channel.pipeline().remove(LoginEncoder.class);
+		System.out.println(
+				request.getUsername() + ", " + request.getPassword() + ", " + request.getLoginType().toString());
+		// }
 	}
 
 	public int checkPlayer(LoginRequestMessage request) {
