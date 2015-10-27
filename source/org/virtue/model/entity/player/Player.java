@@ -81,12 +81,10 @@ public class Player extends Entity {
 	/**
 	 * The {@link Player} Constructor
 	 */
-	public Player(Channel channel, String username, String password, ISAACCipher encoding, ISAACCipher decoding) {
+	public Player(Channel channel, String username, String password) {
 		this.channel = channel;
 		this.userhash = Base37Utility.encodeBase37(username);
 		this.password = password;
-		this.encoding = encoding;
-		this.decoding = decoding;
 		this.rights = 2;
 	}
 	
@@ -209,6 +207,9 @@ public class Player extends Entity {
 	public void finish() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void setNames(String currentName, String prevName) {
 	}
 	
 }

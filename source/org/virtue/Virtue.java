@@ -162,6 +162,7 @@ public class Virtue {
 		network.bindNetwork();
 	}
 	
+
 	/**
 	 * Loads the packets and stores them in {@link Maps}
 	 */
@@ -237,4 +238,5 @@ public class Virtue {
 	public ParserRepository getParserRepository() {
 		return parser;
 	}
+
 }
