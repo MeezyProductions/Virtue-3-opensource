@@ -5,8 +5,8 @@ import java.net.ProtocolException;
 import java.util.List;
 
 import org.virtue.Constants;
-import org.virtue.network.protocol.message.LoginRequest;
-import org.virtue.network.protocol.message.LoginTypeMessage;
+import org.virtue.network.protocol.message.login.LoginRequestMessage;
+import org.virtue.network.protocol.message.login.LoginTypeMessage;
 import org.virtue.utility.Base37Utility;
 import org.virtue.utility.BufferUtility;
 import org.virtue.utility.XTEACipher;
@@ -149,7 +149,7 @@ public class LoginDecoder extends ByteToMessageDecoder {
 			serverKeys[i] = xteaKey[i] + 50;
 		}
 
-		out.add(new LoginRequest(username, password, type));
+		out.add(new LoginRequestMessage(ctx.channel(), username, password, type));
 	}
 
 	private void decodeGamePayload(ChannelHandlerContext ctx, ByteBuf buf, List<Object> out) throws ProtocolException {
@@ -254,7 +254,7 @@ public class LoginDecoder extends ByteToMessageDecoder {
 		for (int i = 0; i < serverKeys.length; i++) {
 			serverKeys[i] = xteaKey[i] + 50;
 		}
-		out.add(new LoginRequest(username, password, type));
+		out.add(new LoginRequestMessage(ctx.channel(), username, password, type));
 	}
 
 }

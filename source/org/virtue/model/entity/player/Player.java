@@ -26,7 +26,8 @@ import org.virtue.model.entity.Entity;
 import org.virtue.network.event.buffer.OutboundBuffer;
 import org.virtue.network.event.context.GameEventContext;
 import org.virtue.network.event.encoder.GameEventEncoder;
-import org.virtue.network.protocol.message.LoginTypeMessage;
+import org.virtue.network.protocol.message.login.LoginTypeMessage;
+import org.virtue.utility.Base37Utility;
 import org.virtue.utility.ISAACCipher;
 
 import io.netty.buffer.ByteBuf;
@@ -45,11 +46,13 @@ public class Player extends Entity {
 	 */
 	private Channel channel;
 	
+
 	/**
-	 * The players username
+	 * The players user hash
 	 */
-	private String username;
+	private long userhash;
 	
+
 	/**
 	 * The players password
 	 */
@@ -80,7 +83,7 @@ public class Player extends Entity {
 	 */
 	public Player(Channel channel, String username, String password, ISAACCipher encoding, ISAACCipher decoding) {
 		this.channel = channel;
-		this.username = username;
+		this.userhash = Base37Utility.encodeBase37(username);
 		this.password = password;
 		this.encoding = encoding;
 		this.decoding = decoding;
@@ -152,9 +155,9 @@ public class Player extends Entity {
 	 * Returns the players username
 	 */
 	public String getUsername() {
-		return username;
+		return Base37Utility.decodeBase37(userhash);
 	}
-	
+
 	/**
 	 * Returns the players password
 	 */
@@ -188,6 +191,24 @@ public class Player extends Entity {
 	 */
 	public VarRepository getVars() {
 		return vars;
+	}
+
+
+	/**
+	 * Returns the player's user hash
+	 * 
+	 * @return The user hash
+	 */
+	public long getUserHash() {
+		return userhash;
+	}
+
+	public void kick(boolean b) {
+	}
+
+	public void finish() {
+		// TODO Auto-generated method stub
+
 	}
 	
 }

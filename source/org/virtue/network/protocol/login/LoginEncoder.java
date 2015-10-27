@@ -1,8 +1,8 @@
 package org.virtue.network.protocol.login;
 
 import org.virtue.network.event.buffer.OutboundBuffer;
-import org.virtue.network.protocol.message.LoginResponse;
-import org.virtue.network.protocol.message.LoginTypeMessage;
+import org.virtue.network.protocol.message.login.LoginResponseMessage;
+import org.virtue.network.protocol.message.login.LoginTypeMessage;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -14,19 +14,19 @@ import io.netty.handler.codec.MessageToByteEncoder;
  * @author Kyle Friz
  * Created on Oct 26, 2015
  */
-public class LoginEncoder extends MessageToByteEncoder<LoginResponse> {
+public class LoginEncoder extends MessageToByteEncoder<LoginResponseMessage> {
 
 	@Override
-	protected void encode(ChannelHandlerContext ctx, LoginResponse response, ByteBuf out) throws Exception {
-		if (response.getResponse().getCode() != 2) {
-			ctx.channel().writeAndFlush(Unpooled.buffer(1).writeByte(response.getResponse().getCode()));
+	protected void encode(ChannelHandlerContext ctx, LoginResponseMessage response, ByteBuf out) throws Exception {
+		if (response.getReturnCode() != 2) {
+			ctx.channel().writeAndFlush(Unpooled.buffer(1).writeByte(response.getReturnCode()));
 			return;
 		}
 		
 		OutboundBuffer packet = new OutboundBuffer();
-		packet.putVarByte(response.getResponse().getCode());
+		packet.putVarByte(response.getReturnCode());
 		
-		if (response.getType().equals(LoginTypeMessage.LOGIN_LOBBY)) {
+		if (response.getLoginType().equals(LoginTypeMessage.LOGIN_LOBBY)) {
 			packet.putByte(0);
 			
 			packet.putByte(response.getPlayer().getRights());
@@ -60,7 +60,7 @@ public class LoginEncoder extends MessageToByteEncoder<LoginResponse> {
 			packet.putInt(37396180);
 			packet.putShort(1);
             packet.putJagString("127.0.0.1");
-		} else if (response.getType().equals(LoginTypeMessage.LOGIN_WORLD)) {
+		} else if (response.getLoginType().equals(LoginTypeMessage.LOGIN_WORLD)) {
 			packet.putByte(0);
 			packet.putByte(response.getPlayer().getRights());
 			packet.putByte(0);

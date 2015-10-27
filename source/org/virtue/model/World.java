@@ -76,4 +76,21 @@ public class World {
 		}
 		return instance;
 	}
+
+	/**
+	 * Checks to see if the specified player is in the world
+	 * 
+	 * @param hash
+	 *            The player's hashed username
+	 * @return True if the player is in the world, false otherwise
+	 */
+	public boolean containsPlayer(long hash) {
+		for (Player p : players) {
+			if (p == null)
+				return false;
+			if (p.getUserHash() == hash)
+				return true;
+		}
+		return false;
+	}
 }

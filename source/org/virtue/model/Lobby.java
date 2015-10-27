@@ -78,21 +78,38 @@ public class Lobby {
 	}
 	
 	/**
-	 * Checks to see if this lobby instance contains the specified player
-	 * @param username - username of the player
-	 * @return if the lobby contains the player
+	 * Checks to see if the specified player is in the lobby
+	 * 
+	 * @param name
+	 * @return
 	 */
-	public boolean containsPlayer(String username) {
+	public boolean containsPlayer(String name) {
 		for (Player p : players) {
 			if (p == null)
-				continue;
-			
-			if (p.getUsername().equals(username))
+				return false;
+			if (p.getUsername() == name)
 				return true;
-			
 		}
 		return false;
 	}
+
+	/**
+	 * Checks to see if the specified player is in the lobby
+	 * 
+	 * @param hash
+	 *            The player's hashed username
+	 * @return True if the player is in the world, false otherwise
+	 */
+	public boolean containsPlayer(long hash) {
+		for (Player p : players) {
+			if (p == null)
+				return false;
+			if (p.getUserHash() == hash)
+				return true;
+		}
+		return false;
+	}
+
 	
 	/**
 	 * Returns the size of the {@link EntityList} instance
@@ -100,6 +117,25 @@ public class Lobby {
 	 */
 	public int getSize() {
 		return players.size();
+	}
+
+	/**
+	 * Gets the player who has the specified user hash
+	 * 
+	 * @param userHash
+	 *            The user hash
+	 * @return The player, or null if the player is not in the world
+	 */
+	public Player getPlayerByHash(long userHash) {
+		for (Player p : players) {
+			if (p == null) {
+				continue;
+			}
+			if (p.getUserHash() == userHash) {
+				return p;
+			}
+		}
+		return null;
 	}
 	
 }

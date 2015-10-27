@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015 Virtue 3
+ * Copyright (c) 2014 Virtue Studios
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,49 +19,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.virtue.network.protocol.message;
-
-import org.virtue.model.entity.player.Player;
+package org.virtue.parser;
 
 /**
- * @author Kyle Friz
- * Created on Oct 26, 2015
+ * @author Im Frizzy <skype:kfriz1998>
+ * @since Sep 26, 2014
  */
-public class LoginResponse {
-	
-	private final LoginTypeMessage type;
-	private final ResponseType reponse;
-	private final Player player;
+public interface Parser {
 
-	public LoginResponse(LoginTypeMessage type, ResponseType response) {
-		this(type, response, null);
-	}
-	
-	public LoginResponse(LoginTypeMessage type, ResponseType response, Player player) {
-		this.type = type;
-		this.reponse = response;
-		this.player = player;
-	}
-	
-	/**
-	 * @return the type
-	 */
-	public LoginTypeMessage getType() {
-		return type;
-	}
+	public void saveObjectDefinition(Object object, String file,
+			ParserDataType type);
 
-	/**
-	 * @return the type
-	 */
-	public ResponseType getResponse() {
-		return reponse;
-	}
+	public Object loadObjectDefinition(Object object, ParserDataType type);
 
-	/**
-	 * @return the player
-	 */
-	public Player getPlayer() {
-		return player;
-	}
-	
+	public boolean objectFileExists(String name, ParserDataType type);
+
 }
