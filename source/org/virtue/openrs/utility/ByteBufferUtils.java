@@ -30,6 +30,7 @@ import org.virtue.openrs.utility.crypto.Whirlpool;
 
 /**
  * Contains {@link ByteBuffer}-related utility methods.
+ * 
  * @author Graham
  * @author `Discardedx2
  */
@@ -194,7 +195,7 @@ public final class ByteBufferUtils {
 		
 		long l = 0L;
 		for (int shift = 8 * size; shift >= 0; shift -= 8) {
-			l |= ((long) buf.get() & 0xffL) << shift;
+			l |= (buf.get() & 0xffL) << shift;
 		}
 		return l;
 	}
@@ -234,5 +235,6 @@ public final class ByteBufferUtils {
 		}
 		return bytes;
 	}
+
 
 }

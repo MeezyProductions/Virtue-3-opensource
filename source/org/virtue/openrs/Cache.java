@@ -62,6 +62,7 @@ public final class Cache implements Closeable {
 		logger.info("Loaded " + getTypeCount() + " Cache Indicies");
 	}
 
+	@Override
 	public void close() throws IOException {
 		store.close();
 	}
@@ -331,5 +332,14 @@ public final class Cache implements Closeable {
 		/* and write the archive back to memory */
 		Container container = new Container(containerType, archive.encode(), containerVersion);
 		write(type, file, container);
+	}
+
+	public int getContainerCount(int type, int file) throws IOException {
+		/* grab the container and the reference table */
+		Container tableContainer = Container.decode(store.read(255, type));
+		ReferenceTable table = ReferenceTable.decode(tableContainer.getData());
+
+		ReferenceTable.Entry entry = table.getEntry(file);
+		return entry.capacity();
 	}
 }
