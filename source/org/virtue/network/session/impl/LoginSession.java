@@ -70,33 +70,8 @@ public class LoginSession extends Session {
 	 * Processes the login queue
 	 */
 	public void processLoginQueue() {
-		LoginRequest request;
-
-		synchronized (loginQueue) {
-			request = loginQueue.pop();
-			if (loginQueue.isEmpty()) {
-				idle = true;
-			} else {
-				service.addPendingSession(this);
-				idle = false;
-			}
-		}
-			switch (request.getType()) {
-			case LOGIN_LOBBY:
-				Lobby.getInstance().addPlayer(player);
-				break;
-			case LOGIN_WORLD:
-				break;
-			}
-
-			channel.pipeline().remove(LoginDecoder.class);
-			channel.pipeline().remove(LoginEncoder.class);
-			channel.pipeline().addFirst("decoder", new GameEventDecoder(player.getDecodingCipher()));
-			System.out.println(
-					request.getUsername() + ", " + request.getPassword() + ", " + request.getType().toString());
-	}
-
-
+	
+}
 
 	/*
 	 * (non-Javadoc)
