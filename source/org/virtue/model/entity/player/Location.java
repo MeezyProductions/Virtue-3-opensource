@@ -4,13 +4,13 @@ package org.virtue.model.entity.player;
  * 
  * @author James Created on Oct 26, 2015
  */
-public final class Locatiom {
+public final class Location {
 
 	private int x;
 	private int y;
 	private int plane;
 
-	public Locatiom(int x, int y, int plane) {
+	public Location(int x, int y, int plane) {
 		this.x = x;
 		this.y = y;
 		this.plane = plane;
@@ -52,14 +52,14 @@ public final class Locatiom {
 		return y + (x << 14) + (plane << 28);
 	}
 
-	public boolean withinDistance(Locatiom position, int distance) {
+	public boolean withinDistance(Location position, int distance) {
 		if (position.plane != plane)
 			return false;
 		int deltaX = position.x - x, deltaY = position.y - y;
 		return deltaX <= distance && deltaX >= -distance && deltaY <= distance && deltaY >= -distance;
 	}
 
-	public Locatiom copy() {
-		return new Locatiom(x, y, plane);
+	public Location copy() {
+		return new Location(x, y, plane);
 	}
 }
