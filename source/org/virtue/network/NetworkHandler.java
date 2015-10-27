@@ -21,17 +21,16 @@
  */
 package org.virtue.network;
 
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandler;
-import io.netty.handler.timeout.ReadTimeoutException;
-import io.netty.util.AttributeKey;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.virtue.network.protocol.message.HandshakeMessage;
 import org.virtue.network.session.Session;
-import org.virtue.network.session.impl.LoginSession;
 import org.virtue.network.session.impl.OnDemandSession;
+
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandler;
+import io.netty.handler.timeout.ReadTimeoutException;
+import io.netty.util.AttributeKey;
 
 /**
  * @author Kyle Friz
@@ -93,7 +92,7 @@ public class NetworkHandler implements ChannelInboundHandler {
 	@Override
 	public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
 		logger.info("Channel is now unregistered from " + ctx.channel().remoteAddress());
-		((Session) ctx.channel().attr(attachment).get()).disconnect();
+		ctx.channel().attr(attachment).get().disconnect();
 	}
 
 	/* (non-Javadoc)
@@ -126,7 +125,8 @@ public class NetworkHandler implements ChannelInboundHandler {
 					ctx.channel().attr(attachment).set(new OnDemandSession(ctx.channel()));
 					break;
 				case HANDSHAKE_LOGIN:
-					ctx.channel().attr(attachment).set(new LoginSession(ctx.channel()));
+					// ctx.channel().attr(attachment).set(new
+					// LoginSession(ctx.channel()));
 					break;
 				default: 
 					throw new IllegalStateException("Invalid handshake state requested.");
@@ -134,7 +134,7 @@ public class NetworkHandler implements ChannelInboundHandler {
 			}
 		}
 		if (ctx.channel().attr(attachment).get() != null )
-			((Session) ctx.channel().attr(attachment).get()).messageReceived(msg);
+			ctx.channel().attr(attachment).get().messageReceived(msg);
 	}
 
 	/* (non-Javadoc)

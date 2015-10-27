@@ -105,7 +105,7 @@ public class GameEngine implements Runnable {
 	/**
 	 * Loads a new {@code WorkerEngine.java}.
 	 */
-	public void load() {
+	public void load(boolean isLive) {
 		SERVICE_EXECUTOR.execute(ONDEMAND_SERVICE);
 		SERVICE_EXECUTOR.execute(LOGIN_SERVICE);
 		logger.info("Loaded the Game Engine.");
@@ -121,8 +121,12 @@ public class GameEngine implements Runnable {
 		while (state != null && state.equals(WorkerState.LIVE)) {
 			long startCycleTime = System.currentTimeMillis();
 			TICK_SERVICE.performCycle();
+			// calculates the amount of time it took to complete this game cycle
 			elapsedCycleTime = (System.currentTimeMillis() - startCycleTime);
 			cycleCount++;
+			// System.out.println("Cycle: " + cycleCount + ", Time: " +
+			// elapsedCycleTime + "ms, Average: " + (avg/cycleCount) +
+			// "ms, Ticks: " + TICK_SERVICE.getTicks().size());
 			if (GameClock.CYCLE_RATE > elapsedCycleTime) {
 				try {
 					Thread.sleep(GameClock.CYCLE_RATE - elapsedCycleTime);

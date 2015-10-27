@@ -30,7 +30,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.virtue.engine.GameEngine;
 import org.virtue.model.service.OnDemandService;
 import org.virtue.network.Network;
 import org.virtue.network.event.GameEventRepository;
@@ -80,19 +79,15 @@ public class Virtue {
 	 */
 	private static Executor executor;
 	
-	/**
-	 * The {@link GameEngine} Instance
-	 */
-	private GameEngine engine;
 
+	/**
+	 * The {@link Network} Instance
+	 */
 	/**
 	 * The {@link ExecutorService} instance for the game engine
 	 */
 	private ExecutorService engineService;
 
-	/**
-	 * The {@link Network} Instance
-	 */
 	private static Network network;
 	
 	/**
@@ -108,7 +103,6 @@ public class Virtue {
 		long start = System.currentTimeMillis();
 		instance = getInstance();
 		try {
-			instance.loadEngine();
 			instance.loadCache();
 			instance.loadNetwork();
 			instance.loadPackets();
@@ -122,19 +116,6 @@ public class Virtue {
 		}
 	}
 	
-	private void loadEngine() {
-		engineService = Executors.newSingleThreadExecutor();
-		engine = new GameEngine();
-		engine.load();
-		engineService.execute(engine);
-	}
-
-	/**
-	 * Return the engine
-	 */
-	public GameEngine getEngine() {
-		return engine;
-	}
 
 	/**
 	 * Loads the cache and stores it

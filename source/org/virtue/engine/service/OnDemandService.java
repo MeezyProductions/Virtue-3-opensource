@@ -28,7 +28,7 @@ import org.virtue.network.session.impl.OnDemandSession;
 
 /**
  * 
- * @author Kyle Friz
+ * @author Im Frizzy <skype:kfriz1998>
  * @since Sep 4, 2014
  */
 public class OnDemandService implements Runnable {

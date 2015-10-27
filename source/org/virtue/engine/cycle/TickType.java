@@ -22,7 +22,7 @@
 package org.virtue.engine.cycle;
 
 /**
- * @author Kyle Friz
+ * @author Im Frizzy <skype:kfriz1998>
  * @author Frosty Teh Snowman <skype:travis.mccorkle>
  * @author Arthur <skype:arthur.behesnilian>
  * @author Sundays211
