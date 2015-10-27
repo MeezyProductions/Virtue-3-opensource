@@ -30,55 +30,47 @@ public class LoginDecoder extends ByteToMessageDecoder {
 		if (!buf.isReadable()) {
 			throw new IllegalStateException("Not enough readable bytes from buffer!");
 		}
-		
+
 		int loginType = buf.readByte() & 0xFF;
-		if (loginType != 16 && loginType != 19 && loginType != 18
-				&& loginType != 60) {
+		if (loginType != 16 && loginType != 19 && loginType != 18 && loginType != 60) {
 			throw new ProtocolException("Invalid login type: " + loginType);
 		}
-		
-		type = loginType == 19 ? LoginTypeMessage.LOGIN_LOBBY
-				: LoginTypeMessage.LOGIN_WORLD;
+
+		type = loginType == 19 ? LoginTypeMessage.LOGIN_LOBBY : LoginTypeMessage.LOGIN_WORLD;
 		size = buf.readShort() & 0xFFFF;
-		
+
 		if (buf.readableBytes() < size) {
-			throw new IllegalStateException(
-					"Not enough readable bytes from buffer!");
+			throw new IllegalStateException("Not enough readable bytes from buffer!");
 		}
 
 		int version = buf.readInt();
 		int subVersion = buf.readInt();
-		
-		if (version != Constants.FRAME_MAJOR
-				&& subVersion != Constants.FRAME_MINOR) {
-			throw new IllegalStateException(
-					"Invalid client version/sub-version!");
+
+		if (version != Constants.FRAME_MAJOR && subVersion != Constants.FRAME_MINOR) {
+			throw new IllegalStateException("Invalid client version/sub-version!");
 		}
 
-		 switch (type) {
-		 case LOGIN_LOBBY:
-			  decodeLobbyPayload(ctx, buf, out);
-		 case LOGIN_WORLD:
-			 buf.readByte();
-			 decodeGamePayload(ctx, buf, out);
-		 }
+		switch (type) {
+		case LOGIN_LOBBY:
+			decodeLobbyPayload(ctx, buf, out);
+		case LOGIN_WORLD:
+			buf.readByte();
+			decodeGamePayload(ctx, buf, out);
+		}
 	}
-	private void decodeLobbyPayload(ChannelHandlerContext ctx, ByteBuf buf,
-			List<Object> out) throws ProtocolException {
+
+	private void decodeLobbyPayload(ChannelHandlerContext ctx, ByteBuf buf, List<Object> out) throws ProtocolException {
 		if (buf.readableBytes() < 2)
-			throw new IllegalStateException(
-					"Not enough readable bytes from buffer.");
+			throw new IllegalStateException("Not enough readable bytes from buffer.");
 
 		int secureBufferSize = buf.readShort() & 0xFFFF;
 		if (buf.readableBytes() < secureBufferSize)
-			throw new IllegalStateException(
-					"Not enough readable bytes from buffer.");
+			throw new IllegalStateException("Not enough readable bytes from buffer.");
 
 		byte[] secureBytes = new byte[secureBufferSize];
 		buf.readBytes(secureBytes);
-		ByteBuf secureBuffer = Unpooled.wrappedBuffer(new BigInteger(
-				secureBytes).modPow(Constants.LOGIN_EXPONENT,
-				Constants.LOGIN_MODULUS).toByteArray());
+		ByteBuf secureBuffer = Unpooled.wrappedBuffer(
+				new BigInteger(secureBytes).modPow(Constants.LOGIN_EXPONENT, Constants.LOGIN_MODULUS).toByteArray());
 
 		int blockOpcode = secureBuffer.readByte() & 0xFF;
 		if (blockOpcode != 10)
@@ -89,9 +81,9 @@ public class LoginDecoder extends ByteToMessageDecoder {
 			xteaKey[i] = secureBuffer.readInt();
 
 		long loginHash = secureBuffer.readLong();
-		
-		 if (loginHash != 0)
-		 throw new ProtocolException("Invalid login hash: " + loginHash);
+
+		if (loginHash != 0)
+			throw new ProtocolException("Invalid login hash: " + loginHash);
 
 		secureBuffer.readByte();
 		secureBuffer.readerIndex(secureBuffer.readerIndex() - 4);
@@ -156,26 +148,22 @@ public class LoginDecoder extends ByteToMessageDecoder {
 		for (int i = 0; i < serverKeys.length; i++) {
 			serverKeys[i] = xteaKey[i] + 50;
 		}
-		
+
 		out.add(new LoginRequest(username, password, type));
 	}
 
-	private void decodeGamePayload(ChannelHandlerContext ctx, ByteBuf buf,
-			List<Object> out) throws ProtocolException {
+	private void decodeGamePayload(ChannelHandlerContext ctx, ByteBuf buf, List<Object> out) throws ProtocolException {
 		if (buf.readableBytes() < 2)
-			throw new IllegalStateException(
-					"Not enough readable bytes from buffer.");
+			throw new IllegalStateException("Not enough readable bytes from buffer.");
 
 		int secureBufferSize = buf.readShort() & 0xFFFF;
 		if (buf.readableBytes() < secureBufferSize)
-			throw new IllegalStateException(
-					"Not enough readable bytes from buffer.");
+			throw new IllegalStateException("Not enough readable bytes from buffer.");
 
 		byte[] secureBytes = new byte[secureBufferSize];
 		buf.readBytes(secureBytes);
-		ByteBuf secureBuffer = Unpooled.wrappedBuffer(new BigInteger(
-				secureBytes).modPow(Constants.LOGIN_EXPONENT,
-				Constants.LOGIN_MODULUS).toByteArray());
+		ByteBuf secureBuffer = Unpooled.wrappedBuffer(
+				new BigInteger(secureBytes).modPow(Constants.LOGIN_EXPONENT, Constants.LOGIN_MODULUS).toByteArray());
 
 		int blockOpcode = secureBuffer.readByte() & 0xFF;
 		if (blockOpcode != 10)
@@ -269,5 +257,4 @@ public class LoginDecoder extends ByteToMessageDecoder {
 		out.add(new LoginRequest(username, password, type));
 	}
 
-	
 }

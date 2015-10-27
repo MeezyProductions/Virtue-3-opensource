@@ -49,7 +49,8 @@ public class HandshakeDecoder extends ByteToMessageDecoder {
 				break;
 			}
 			if (buf.isReadable()) {
-				out.add(new Object[] { type, buf.readBytes(buf.readableBytes()) });
+				// out.add(new Object[] { type,
+				// buf.readBytes(buf.readableBytes()) });
 			} else {
 				out.add(type);
 			}
