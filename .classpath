@@ -7,6 +7,8 @@
 	<classpathentry kind="lib" path="library/source/netty-all-4.1.0.Beta3-sources.jar"/>
 	<classpathentry kind="lib" path="library/source/slf4j-api-1.7.7-sources.jar"/>
 	<classpathentry kind="lib" path="library/source/slf4j-jdk14-1.7.7-sources.jar"/>
+	<classpathentry kind="lib" path="library/binrary/gson-2.3.jar"/>
+	<classpathentry kind="lib" path="library/source/gson-2.3-sources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="binary"/>
 </classpath>
