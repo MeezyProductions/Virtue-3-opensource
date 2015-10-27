@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Launcher Studios
+ * Copyright (c) 2014 Virtue Studios
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ import java.util.Deque;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.virtue.Launcher;
+import org.virtue.Virtue;
 import org.virtue.model.service.OnDemandService;
 import org.virtue.network.protocol.message.OnDemandEncryptionMessage;
 import org.virtue.network.protocol.message.OnDemandRequestMessage;
@@ -72,7 +72,7 @@ public class OnDemandSession extends Session {
 	 */
 	public OnDemandSession(Channel channel) {
 		super(channel);
-		this.service = Launcher.getInstance().getService();
+		this.service = Virtue.getInstance().getService();
 	}
 
 	/**
@@ -95,12 +95,12 @@ public class OnDemandSession extends Session {
 			int type = request.getType();
 			int file = request.getFile();
 
-			Cache cache = Launcher.getInstance().getCache();
+			Cache cache = Virtue.getInstance().getCache();
 			ByteBuf buf;
 
 			try {
 				if (type == 255 && file == 255) {
-					buf = Unpooled.wrappedBuffer(Launcher.getInstance().getChecksumTable());
+					buf = Unpooled.wrappedBuffer(Virtue.getInstance().getChecksumTable());
 				} else {
 					buf = Unpooled.wrappedBuffer(cache.getStore().read(type, file));
 					if (type != 255)

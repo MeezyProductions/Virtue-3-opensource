@@ -43,17 +43,17 @@ import org.virtue.openrs.FileStore;
  * @author Kyle Friz
  * @since Aug 8, 2014
  */
-public class Launcher {
+public class Virtue {
 
 	/**
 	 * The {@link Logger} Instance
 	 */
-	private static Logger logger = LoggerFactory.getLogger(Launcher.class);
+	private static Logger logger = LoggerFactory.getLogger(Virtue.class);
 
 	/**
-	 * The {@link Launcher} Instance
+	 * The {@link Virtue} Instance
 	 */
-	private static Launcher instance;
+	private static Virtue instance;
 	
 	/**
 	 * The {@link Cache} Instance
@@ -101,7 +101,7 @@ public class Launcher {
 	private static GameEventRepository repo;
 	
 	/**
-	 * Main entry point of Launcher
+	 * Main entry point of Virtue
 	 * @param args - command line arguments
 	 */
 	public static void main(String[] args) {
@@ -201,12 +201,12 @@ public class Launcher {
 	}
 	
 	/**
-	 * Returns The {@link Launcher} Instance
+	 * Returns The {@link Virtue} Instance
 	 */
-	public static Launcher getInstance() {
+	public static Virtue getInstance() {
 		if (instance == null) {
 			try {
-				instance = new Launcher();
+				instance = new Virtue();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

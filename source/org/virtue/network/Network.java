@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Launcher Studios
+ * Copyright (c) 2014 Virtue Studios
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -79,7 +79,7 @@ public class Network {
 		} catch (InterruptedException exception) {
 			logger.error("Error in binding the network", exception);
 		} finally {
-			logger.info("Bound Launcher to the network");
+			logger.info("Bound Virtue to the network");
 		}
 	}
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Launcher Studios
+ * Copyright (c) 2014 Virtue Studios
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
  */
 package org.virtue.model.entity.player;
 
-import org.virtue.Launcher;
+import org.virtue.Virtue;
 import org.virtue.model.entity.Entity;
 import org.virtue.network.event.buffer.OutboundBuffer;
 import org.virtue.network.event.context.GameEventContext;
@@ -105,7 +105,7 @@ public class Player extends Entity {
 	 */
 	public <T extends GameEventEncoder<?>> ChannelFuture sendEvent(Class<T> clazz, GameEventContext context) {
 		if (channel.isActive()) {
-			OutboundBuffer packet = Launcher.getInstance().getRepository().encode(this, clazz, context);
+			OutboundBuffer packet = Virtue.getInstance().getRepository().encode(this, clazz, context);
 			ByteBuf buffer = Unpooled.copiedBuffer(packet.buffer(), 0, packet.offset());
 			synchronized (channel) {
 				return channel.writeAndFlush(buffer);

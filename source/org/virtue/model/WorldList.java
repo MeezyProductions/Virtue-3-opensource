@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Launcher Studios
+ * Copyright (c) 2014 Virtue Studios
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ public class WorldList {
 	private static final List<WorldEntry> entries = new LinkedList<>();
 	
 	static {
-		entries.add(new WorldEntry(1, "Launcher", "127.0.0.1", "United States (North)", 77, true, true));
+		entries.add(new WorldEntry(1, "Virtue", "127.0.0.1", "United States (North)", 77, true, true));
 	}
 	
 	/**

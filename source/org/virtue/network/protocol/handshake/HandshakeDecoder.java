@@ -35,6 +35,7 @@ public class HandshakeDecoder extends ByteToMessageDecoder {
 			switch (type.getType()) {
 			case HANDSHAKE_LOGIN:
 				ensureResponse(ctx);
+				System.out.println("logggggggggggggggggggggginnnnnnnn");
 				ctx.pipeline().replace("decoder", "decoder", new LoginDecoder());
 				ctx.pipeline().addAfter("decoder", "encoder", new LoginEncoder());
 				break;

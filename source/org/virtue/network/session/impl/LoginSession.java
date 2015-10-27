@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import org.virtue.Launcher;
+import org.virtue.Virtue;
 import org.virtue.engine.service.LoginService;
 import org.virtue.model.Lobby;
 import org.virtue.model.World;
@@ -41,7 +41,7 @@ public class LoginSession extends Session {
 	
 	public LoginSession(Channel channel) {
 		super(channel);
-		this.service = Launcher.getInstance().getEngine().getLoginService();
+		this.service = Virtue.getInstance().getEngine().getLoginService();
 	}
 
 	@Override
