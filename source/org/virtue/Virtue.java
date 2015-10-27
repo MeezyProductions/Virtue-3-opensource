@@ -38,7 +38,6 @@ import org.virtue.openrs.Cache;
 import org.virtue.openrs.ChecksumTable;
 import org.virtue.openrs.Container;
 import org.virtue.openrs.FileStore;
-import org.virtue.parser.ParserRepository;
 
 /**
  * @author Kyle Friz
@@ -50,11 +49,6 @@ public class Virtue {
 	 * The {@link Logger} Instance
 	 */
 	private static Logger logger = LoggerFactory.getLogger(Virtue.class);
-
-	/**
-	 * The {@link ParserRepository} instance
-	 */
-	private ParserRepository parser;
 
 	/**
 	 * The {@link Virtue} Instance
@@ -123,7 +117,6 @@ public class Virtue {
 			instance.loadEngine();
 			instance.loadCache();
 			instance.loadNetwork();
-			instance.loadGame();
 			instance.loadPackets();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -171,10 +164,7 @@ public class Virtue {
 		repo.load();
 	}
 	
-	private void loadGame() throws Exception {
-		parser = new ParserRepository();
-		parser.load();
-	}
+
 	/**
 	 * Return the cache for the game build
 	 */
@@ -230,13 +220,6 @@ public class Virtue {
 			}
 		}
 		return instance;
-	}
-
-	/**
-	 * Return the repo of parsers
-	 */
-	public ParserRepository getParserRepository() {
-		return parser;
 	}
 
 }
